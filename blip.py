@@ -49,7 +49,8 @@ def main():
     if not args.verbose:
         sys.stdout = sys.__stdout__
     # Print the generated caption
-    print(processor.decode(out[0], skip_special_tokens=True))
+    if not args.input_file == '-':
+        print(args.input_file, processor.decode(out[0], skip_special_tokens=True))
 
 if __name__ == '__main__':
     main()

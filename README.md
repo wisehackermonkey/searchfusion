@@ -77,3 +77,9 @@ https://huggingface.co/Salesforce/blip-image-captioning-large
 
 # target output
 ![alt text](image.png)
+
+
+```bash
+sudo apt-get install ripgrep
+pip install ripgrepy
+```
