@@ -1,6 +1,7 @@
 import argparse
 import sys
 import os
+from os import path 
 import logging
 from PIL import Image
 from transformers import BlipProcessor, BlipForConditionalGeneration
@@ -50,7 +51,8 @@ def main():
         sys.stdout = sys.__stdout__
     # Print the generated caption
     if not args.input_file == '-':
-        print(args.input_file, processor.decode(out[0], skip_special_tokens=True))
+        cur_file = path.abspath(path.expanduser(args.input_file))
+        print(cur_file,",", processor.decode(out[0], skip_special_tokens=True))
 
 if __name__ == '__main__':
     main()

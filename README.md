@@ -83,3 +83,81 @@ https://huggingface.co/Salesforce/blip-image-captioning-large
 sudo apt-get install ripgrep
 pip install ripgrepy
 ```
+
+### prompt
+```python
+write a python script 
+
+create a database using sqlite 
+witht the following columns 
+
+image_descriptions 
+    path TEXT,
+    description TEXT,
+    hash TEXT
+path (text) (path to file) (has the abspath of the image file)
+description(text)
+hash (text) (md5 hash of the file) make entry unique on this key
+
+create the database call it image_descriptions
+
+up_sert the file  "/home/o/github/searchfusion/images/tor.png" into the database
+description = "a photo of a shady guy holding a onion"
+db name "demo.db"
+code only
+```
+
+
+# prompt
+```python
+create a python script 
+that searches a sqlite database.
+   db table name: image_descriptions
+    path TEXT PRIMARY KEY,
+    description TEXT,
+    hash TEXT
+
+key word search on description
+
+create a commandline search input display the results 
+for each result
+"<path make fixed with on largest file name, strip the path to just the file name like '.../tor.png'>, <Description 'where a substring is found change console characters to red use '\033[91m'' >
+
+add command line arguments 
+--db 'demo.db'
+--query -q 'onion'
+script name is search.py
+code only, example use
+```
+
+
+# prompt
+```
+create a python script 
+file name: jobs.py
+search all sub directories (recusivly) for images using find
+input is a list of directories to search within example ['./images', './secret']
+
+images = 'png, jpg, gif, webp, bmp'
+
+
+create a priority queue store in a sqlite database called jobs.db table name jobs_queue
+        path TEXT, (abspath)
+        time (time created)
+        hash TEXT UNIQUE 
+        completed BOOL
+create a sqlite database. db file name images.db
+   db table name: image_descriptions
+    path TEXT,
+    description TEXT,
+    hash TEXT UNIQUE PRIMARY KEY
+NUMWORKERS = 2
+if there is jobs in the queue the pull off NUM_WORKERS
+and run the shell command  
+parallel NUMORKERS 'python blip.py --text "photo of " --verbose  --input_file {path} '
+if NUMWORKERS is more than 1 then run multiple  python blip.py --text "photo of " --verbose  --input_file {path} '
+
+store the results of each job into the image_descriptions table
+
+code only, example use
+```
