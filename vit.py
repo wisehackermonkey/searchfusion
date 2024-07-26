@@ -26,8 +26,8 @@ from PIL import Image
 import requests
 import sys
 import cProfile
-processor = ViTImageProcessor.from_pretrained('google/vit-base-patch16-224')
-model = ViTForImageClassification.from_pretrained('google/vit-base-patch16-224')
+processor = ViTImageProcessor.from_pretrained('google/vit-base-patch16-224-in21k')
+model = ViTForImageClassification.from_pretrained('google/vit-base-patch16-224-in21k')
 # Define a function to process and classify an image
 def process_and_classify_image(image_path):
     image = Image.open(image_path)
@@ -49,7 +49,7 @@ if __name__ == "__main__":
     with open("photos.txt","r", encoding="utf-8") as file: 
         
         # image_paths = sys.argv[1:].split("\n")
-        image_paths = file.read().split("\n")
+        image_paths = file.read().split("\n")[:4]
 
         if not image_paths:
             print("Please provide image file paths as arguments.")

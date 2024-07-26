@@ -132,7 +132,7 @@ code only, example use
 
 
 # prompt
-```
+```python
 create a python script 
 file name: jobs.py
 search all sub directories (recusivly) for images using find
@@ -160,4 +160,14 @@ if NUMWORKERS is more than 1 then run multiple  python blip.py --text "photo of 
 store the results of each job into the image_descriptions table
 
 code only, example use
+```
+
+# prompt
+
+```python
+convert this python script to accept list of image files from ls ./path/to/dir/*.png | vit.py 
+vit.py (name of the script)
+example path = ./images/*.png 
+
+intalize  processor and model at the top of the file 
 ```
